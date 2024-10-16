@@ -1,0 +1,9 @@
+/* Styles for bar-chart component */
+canvas {
+  width: 100%;
+  height: auto;
+}
+/* src/styles.css */
+nb-card {
+  transform: translate3d(0, 0, 0);
+}

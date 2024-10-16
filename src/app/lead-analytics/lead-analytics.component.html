@@ -1,0 +1,43 @@
+<nb-layout>
+  <nb-layout-column>
+    <!-- Bar Chart -->
+    <nb-card>
+      <nb-card-header>
+        Bar Chart Example
+      </nb-card-header>
+      <nb-card-body>
+        <app-bar-chart [data]="barChartData"></app-bar-chart> <!-- Pass dynamic data -->
+      </nb-card-body>
+    </nb-card>
+
+    <!-- Line Chart -->
+    <nb-card>
+      <nb-card-header>
+        Line Chart Example
+      </nb-card-header>
+      <nb-card-body>
+        <app-line-chart [data]="lineChartData"></app-line-chart> <!-- Pass dynamic data -->
+      </nb-card-body>
+    </nb-card>
+
+    <!-- Pie Chart -->
+    <nb-card>
+      <nb-card-header>
+        Pie Chart Example
+      </nb-card-header>
+      <nb-card-body>
+        <app-pie-chart [data]="pieChartData"></app-pie-chart> <!-- Pass dynamic data -->
+      </nb-card-body>
+    </nb-card>
+
+    <!-- Radar Chart -->
+    <nb-card>
+      <nb-card-header>
+        Radar Chart Example
+      </nb-card-header>
+      <nb-card-body>
+        <app-radar-chart [data]="radarChartData"></app-radar-chart> <!-- Pass dynamic data -->
+      </nb-card-body>
+    </nb-card>
+  </nb-layout-column>
+</nb-layout>
