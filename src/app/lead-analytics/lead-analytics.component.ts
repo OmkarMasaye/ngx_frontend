@@ -27,53 +27,74 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./lead-analytics.component.css'],
 })
 export class LeadAnalyticsComponent implements OnInit {
-  userId!: number;
-  lineChartData!: { labels: string[], values: number[] }; // Data for Line Chart
-  pieChartData!: { labels: string[], values: number[], colors: string[], borderColors: string[] }; // Data for Pie Chart
-  radarChartData!: { labels: string[], values: number[] }; // Data for Radar Chart
-  barChartData!: { labels: string[], values: number[] }; // Data for Bar Chart
+  userId: string =''; // Keep userId as a string
+  lineChartData!: { labels: string[], values: number[] };
+  pieChartData!: { labels: string[], values: number[], colors: string[], borderColors: string[] };
+  radarChartData!: { labels: string[], values: number[] };
+  barChartData!: { labels: string[], values: number[] };
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) { }
+  constructor(private route: ActivatedRoute, private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.userId = +this.route.snapshot.paramMap.get('id')!; // Ensure this is correct
+    // Get the userId from the route as a string
+    this.userId = this.route.snapshot.paramMap.get('id')!; // Ensure this fetches correctly
     if (!this.userId) {
       console.error('User ID is undefined or invalid');
-      return; // Early return if userId is invalid
+      return;
     }
-    this.fetchChartData(); // Call the API to fetch data
+    this.fetchChartData();
   }
 
   fetchChartData(): void {
-    // Fetch all the necessary data for the charts from the API
-    this.http.get(`http://localhost:5000/api/chartdata/${this.userId}`).subscribe((data: any) => {
-      this.lineChartData = { labels: data.lineData.labels, values: data.lineData.values };
-      this.pieChartData = { 
-        labels: data.pieData.labels, 
-        values: data.pieData.values, 
-        colors: data.pieData.colors, 
-        borderColors: data.pieData.borderColors 
-      };
-      this.radarChartData = { labels: data.radarData.labels, values: data.radarData.values };
-      this.barChartData = { labels: data.barData.labels, values: data.barData.values };
-
-      // Update the charts with the fetched data
-      this.updateCharts();
-    }, (error) => {
-      console.error('Error fetching chart data:', error);
-    });
+    // Fetching data using userId as a string
+    this.http.get(`http://localhost:5000/api/chartdata/${this.userId}`).subscribe(
+      (data: any) => {
+        console.log('Fetching chart data for userId:', this.userId);
+        // Ensure the fetched data exists before assigning
+        if (data) {
+          if (data.chartData) { // Adjusted to ensure you are accessing the right structure
+            if (data.chartData.lineData) {
+              this.lineChartData = { 
+                labels: data.chartData.lineData.labels || [], 
+                values: data.chartData.lineData.values || [] 
+              };
+            }
+            if (data.chartData.pieData) {
+              this.pieChartData = { 
+                labels: data.chartData.pieData.labels || [], 
+                values: data.chartData.pieData.values || [], 
+                colors: data.chartData.pieData.colors || [], 
+                borderColors: data.chartData.pieData.borderColors || [] 
+              };
+            }
+            if (data.chartData.radarData) {
+              this.radarChartData = { 
+                labels: data.chartData.radarData.labels || [], 
+                values: data.chartData.radarData.values || [] 
+              };
+            }
+            if (data.chartData.barData) {
+              this.barChartData = { 
+                labels: data.chartData.barData.labels || [], 
+                values: data.chartData.barData.values || [] 
+              };
+            }
+            this.updateCharts();  // Call the chart update function
+          } else {
+            console.error('Chart data not found in the response');
+          }
+        } else {
+          console.error('Fetched data is undefined');
+        }
+      },
+      (error) => {
+        console.error('Error fetching chart data:', error);
+      }
+    );
   }
 
   updateCharts(): void {
     // Here you can pass the fetched data to the child components (charts)
-    // For example, you can use a service to communicate or directly pass data via Input properties
-    // Since you have defined the inputs in your child components, you can assign the data like this:
-
-    // This assumes you have template variables defined for your chart components in your template file.
-    // Example:
-    // <app-line-chart [userId]="userId" [data]="lineChartData"></app-line-chart>
-    // <app-pie-chart [userId]="userId" [data]="pieChartData"></app-pie-chart>
-    // <app-radar-chart [userId]="userId" [data]="radarChartData"></app-radar-chart>
-    // <app-bar-chart [userId]="userId" [data]="barChartData"></app-bar-chart>
+    // Pass data to chart components via Input properties
   }
 }

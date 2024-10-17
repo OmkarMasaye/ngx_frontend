@@ -16,7 +16,7 @@ import { Router } from '@angular/router'; // Ensure Router is imported
   styleUrls: ['./lead-processing.component.css'],
 })
 export class LeadProcessingComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'username', 'email', 'age', 'actions'];
+  displayedColumns: string[] = ['firstName', 'lastName', 'username', 'email', 'age', 'actions'];
   dataSource = new MatTableDataSource<any>();
 
   constructor(private http: HttpClient, private router: Router) {}  // Inject the Router here
@@ -29,6 +29,7 @@ export class LeadProcessingComponent implements OnInit {
     this.http.get<any[]>('http://localhost:5000/api/leads')
       .subscribe(
         (data) => {
+          console.log('Leads:', data);
           this.dataSource.data = data;
         },
         (error) => {
@@ -38,8 +39,15 @@ export class LeadProcessingComponent implements OnInit {
   }
 
   onUserClick(userId: number): void {
-    this.router.navigate(['/lead-analytics', userId]); // Navigate with userId as route param
+    console.log('Navigating with User ID:', userId);
+    if (userId) {
+      this.router.navigate(['/lead-analytics', userId]);
+    } else {
+      console.error('User ID is undefined');
+    }
   }
+  
+  
 
   onDeleteConfirm(id: number): void {
     if (window.confirm('Are you sure you want to delete?')) {

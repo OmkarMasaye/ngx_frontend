@@ -1,42 +1,42 @@
 <nb-layout>
   <nb-layout-column>
     <!-- Bar Chart -->
-    <nb-card>
+    <nb-card *ngIf="barChartData">
       <nb-card-header>
         Bar Chart Example
       </nb-card-header>
       <nb-card-body>
-        <app-bar-chart [data]="barChartData"></app-bar-chart> <!-- Pass dynamic data -->
+        <app-bar-chart [data]="barChartData"></app-bar-chart>
       </nb-card-body>
     </nb-card>
 
     <!-- Line Chart -->
-    <nb-card>
+    <nb-card *ngIf="lineChartData">
       <nb-card-header>
         Line Chart Example
       </nb-card-header>
       <nb-card-body>
-        <app-line-chart [data]="lineChartData"></app-line-chart> <!-- Pass dynamic data -->
+        <app-line-chart [data]="lineChartData"></app-line-chart>
       </nb-card-body>
     </nb-card>
 
     <!-- Pie Chart -->
-    <nb-card>
+    <nb-card *ngIf="pieChartData">
       <nb-card-header>
         Pie Chart Example
       </nb-card-header>
       <nb-card-body>
-        <app-pie-chart [data]="pieChartData"></app-pie-chart> <!-- Pass dynamic data -->
+        <app-pie-chart [data]="pieChartData"></app-pie-chart>
       </nb-card-body>
     </nb-card>
 
     <!-- Radar Chart -->
-    <nb-card>
+    <nb-card *ngIf="radarChartData">
       <nb-card-header>
         Radar Chart Example
       </nb-card-header>
       <nb-card-body>
-        <app-radar-chart [data]="radarChartData"></app-radar-chart> <!-- Pass dynamic data -->
+        <app-radar-chart [data]="radarChartData"></app-radar-chart>
       </nb-card-body>
     </nb-card>
   </nb-layout-column>
