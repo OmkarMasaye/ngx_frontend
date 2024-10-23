@@ -1,65 +1,70 @@
-<nb-card>
-  <nb-card-header>
-    Lead Processing
-  </nb-card-header>
+<nb-layout>
+  <nb-layout-header>
+    <h1>Lead Processing</h1>
+  </nb-layout-header>
 
-  <nb-card-body>
-    <input type="file" (change)="onFileUpload($event)" />
+  <nb-layout-column>
+    <nb-card>
+      <nb-card-header>
+        Lead Processing
+      </nb-card-header>
 
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-      <!-- ID Column -->
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> ID </th>
-        <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
-      </ng-container>
-
-      <!-- First Name Column -->
-      <ng-container matColumnDef="firstName">
-        <th mat-header-cell *matHeaderCellDef> First Name </th>
-        <td mat-cell *matCellDef="let element">
-          <button mat-button (click)="onUserClick(element._id)">
-            {{ element.firstName }}
+      <nb-card-body>
+        <div class="filter-container">
+          <input matInput (keyup)="applyFilter($event)" placeholder="Search by name" />
+          <button mat-button (click)="sortByAge()" class="sort-button">
+            Sort by Age {{ sortDirection === 'asc' ? '↑' : '↓' }}
           </button>
-        </td>
-      </ng-container>
+        </div>
 
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+          <ng-container matColumnDef="firstName">
+            <th mat-header-cell *matHeaderCellDef> First Name </th>
+            <td mat-cell *matCellDef="let element"> 
+              <button mat-button (click)="onUserClick(element.userId)">
+                {{ element.firstName }}
+              </button>
+            </td>
+          </ng-container>
 
-      <!-- Last Name Column -->
-      <ng-container matColumnDef="lastName">
-        <th mat-header-cell *matHeaderCellDef> Last Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
-      </ng-container>
+          <ng-container matColumnDef="lastName">
+            <th mat-header-cell *matHeaderCellDef> Last Name </th>
+            <td mat-cell *matCellDef="let element"> {{ element.lastName }} </td>
+          </ng-container>
 
-      <!-- Username Column -->
-      <ng-container matColumnDef="username">
-        <th mat-header-cell *matHeaderCellDef> Username </th>
-        <td mat-cell *matCellDef="let element"> {{element.userName}} </td> <!-- Change to userName -->
-      </ng-container>
+          <ng-container matColumnDef="userName">
+            <th mat-header-cell *matHeaderCellDef> Username </th>
+            <td mat-cell *matCellDef="let element"> {{ element.userName }} </td>
+          </ng-container>
 
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> Email </th>
+            <td mat-cell *matCellDef="let element"> {{ element.email }} </td>
+          </ng-container>
 
-      <!-- Email Column -->
-      <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef> E-mail </th>
-        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-      </ng-container>
+          <ng-container matColumnDef="age">
+            <th mat-header-cell *matHeaderCellDef> Age </th>
+            <td mat-cell *matCellDef="let element"> {{ element.age }} </td>
+          </ng-container>
 
-      <!-- Age Column -->
-      <ng-container matColumnDef="age">
-        <th mat-header-cell *matHeaderCellDef> Age </th>
-        <td mat-cell *matCellDef="let element"> {{element.age}} </td>
-      </ng-container>
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-button (click)="onDeleteConfirm(element._id)">Delete</button> <!-- Use _id -->
+            </td>
+          </ng-container>
 
-      <!-- Actions Column -->
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef> Actions </th>
-        <td mat-cell *matCellDef="let element">
-          <button mat-button (click)="onDeleteConfirm(element.id)">Delete</button>
-        </td>
-      </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+        <!-- Paginator for pagination -->
+        <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      </nb-card-body>
+    </nb-card>
+  </nb-layout-column>
 
-  </nb-card-body>
-</nb-card>
+  <nb-layout-footer>
+    <!-- You can add your footer content here if needed -->
+  </nb-layout-footer>
+</nb-layout>
