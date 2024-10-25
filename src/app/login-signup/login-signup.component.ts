@@ -27,15 +27,21 @@ export class LoginSignupComponent {
 
       this.http.post('http://localhost:5000/api/auth/login', { email, password })
         .subscribe((response: any) => {
-          const token = (response as { token: string }).token;
-          localStorage.setItem('token', token);
-          
-          // Navigate to lead processing after successful login
-          this.router.navigate(['/lead-processing']);
+          console.log('Login Response:', response); // Log the response
+          const token = response.token; 
+          const userId = response._id; // Use the correct property name for user ID
+
+          if (userId) {
+            localStorage.setItem('token', token);
+            localStorage.setItem('userId', userId); // Store userId from the response
+            this.router.navigate(['/lead-analytics', userId]); // Pass userId to the route
+          } else {
+            console.error('User ID is missing in the response');
+          }
         }, error => {
           console.error('Login error:', error);
         });
-    }
+    }    
   }
 
   onSignup(form: any) {

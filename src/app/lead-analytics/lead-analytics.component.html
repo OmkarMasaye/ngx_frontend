@@ -1,9 +1,12 @@
-<nb-layout>
-  <nb-layout-column>
-    <div class="container">
+<app-layout></app-layout>
+
+<!-- Main Content Area -->
+<div class="analytics-container"> <!-- Container for analytics -->
+  <nb-layout>
+    <nb-layout-column>
       <div class="row">
         <!-- Bar Chart -->
-        <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="col-12">
           <nb-card *ngIf="barChartData" class="chart-card">
             <nb-card-header>
               Bar Chart Example
@@ -15,7 +18,7 @@
         </div>
 
         <!-- Line Chart -->
-        <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="col-12">
           <nb-card *ngIf="lineChartData" class="chart-card">
             <nb-card-header>
               Line Chart Example
@@ -27,7 +30,7 @@
         </div>
 
         <!-- Pie Chart -->
-        <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="col-12">
           <nb-card *ngIf="pieChartData" class="chart-card">
             <nb-card-header>
               Pie Chart Example
@@ -39,7 +42,7 @@
         </div>
 
         <!-- Radar Chart -->
-        <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="col-12">
           <nb-card *ngIf="radarChartData" class="chart-card">
             <nb-card-header>
               Radar Chart Example
@@ -50,7 +53,6 @@
           </nb-card>
         </div>
       </div>
-    </div>
-  </nb-layout-column>
-</nb-layout>
-<!-- updated usename -->
+    </nb-layout-column>
+  </nb-layout>
+</div>

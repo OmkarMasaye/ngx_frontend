@@ -1,0 +1,99 @@
+/* Sidebar Styles */
+.sidenav {
+    position: fixed;
+    top: 80px; /* Adjust to start below the navbar */
+    left: 0;
+    width: 250px;
+    height: calc(100vh - 80px); /* Adjust height to account for navbar */
+    background-color: white;
+    color: black;
+    transition: width 0.3s;
+    z-index: 1100;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidenav.sidenav-compact {
+    width: 80px;
+}
+
+.sidenav .sidebar-header {
+    padding: 1rem;
+    font-size: 1.5rem;
+    color: black;
+}
+/* 
+.sidenav .nav-link {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    font-size: 1.1rem;
+    color: black;
+    transition: all 0.2s ease-in-out;
+} */
+
+.sidenav .nav-link i {
+    font-size: 1.2rem;
+    color: black;
+}
+
+/* .sidenav .nav-link:hover {
+    background-color: #f1f1f1;
+} */
+
+.sidenav .nav-link-compact {
+    justify-content: center;
+    padding: 1rem;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1200;
+    background-color: white;
+    padding: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow for distinction */
+}
+
+.navbar .navbar-brand {
+    font-size: 1.5rem;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+}
+
+.navbar .user-initials {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+
+.navbar .dropdown-menu {
+    right: 0;
+    left: auto;
+    z-index: 1300; /* Ensure dropdown shows above everything */
+}
+
+.navbar .username {
+    font-size: 1.2rem;
+    margin-left: 10px;
+}
+/* Styles for active link in sidenav */
+/* Styles for active link in sidenav */
+.nav-link.active {
+    background-color: #e7f3ff; /* Light blue background for active link */
+    border-left: 4px solid #0d6efd; /* Bootstrap primary color */
+    color: #0d6efd; /* Change text color for active link */
+    transition: all 0.3s ease; /* Smooth transition */
+}
+
+/* Additional hover effect for nav links */
+.sidenav .nav-link:hover {
+    background-color: #f0f0f0; /* Light grey background on hover */
+    border-left: 4px solid #0d6efd; /* Bootstrap primary color */
+}
+
+/* Adjust the nav-link padding for a better visual effect */
+.sidenav .nav-link {
+    padding: 1rem 1.5rem; /* Add padding for spacing */
+}

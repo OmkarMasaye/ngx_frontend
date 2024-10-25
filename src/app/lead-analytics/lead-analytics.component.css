@@ -1,9 +1,16 @@
-/* src/styles.css */
+/* Styles for the analytics container */
+.analytics-container {
+  margin-top: -120px; /* Ensure it starts below the navbar */
+  margin-left: 250px; /* Account for sidebar width */
+ 
+  overflow-y: auto; /* Allow scrolling for the container */
+  padding: 20px; /* Optional: Add some padding */
+}
 
 /* Ensure charts fit within their containers */
 canvas {
-  width: 100% !important;
-  height: auto !important;
+  width: 100% !important; /* Full width for charts */
+  height: auto !important; /* Maintain aspect ratio */
 }
 
 /* Styling for chart cards */
@@ -12,6 +19,9 @@ canvas {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for card */
   border-radius: 10px; /* Rounded corners */
   transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+  max-width: 800px; /* Set a max-width to reduce card width */
+  margin-left: auto; /* Center the card */
+  margin-right: auto; /* Center the card */
 }
 
 /* On hover, cards will pop out slightly */
@@ -30,22 +40,15 @@ nb-card-header {
   border-radius: 10px 10px 0 0; /* Rounded corners for header */
 }
 
-
 /* Card body styles */
 nb-card-body {
-  padding: 20px;
+  padding: 20px; /* Internal padding for the card body */
 }
 
-/* Responsive container styles */
-.container {
-  max-width: 1200px; /* Set a max-width for the content */
-  margin: 0 auto;
-  padding: 20px;
-}
-
-/* Add some spacing between cards on small screens */
+/* Responsive adjustments */
 @media (max-width: 767px) {
   .chart-card {
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Reduce bottom margin on smaller screens */
+    width: 100%; /* Make full width on small screens */
   }
 }

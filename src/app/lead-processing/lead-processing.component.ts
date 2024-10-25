@@ -1,4 +1,3 @@
-// import * as Papa from 'papaparse'
 import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
@@ -9,11 +8,12 @@ import { MatTableModule } from '@angular/material/table';
 import { NbCardModule, NbLayoutModule } from '@nebular/theme';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { LayoutComponent } from '../layout/layout.component';
 
 @Component({
   selector: 'app-lead-processing',
   standalone: true,
-  imports: [NbLayoutModule, NbCardModule, MatTableModule, MatButtonModule, MatSortModule, MatPaginator],
+  imports: [NbLayoutModule, NbCardModule, MatTableModule, MatButtonModule, MatSortModule, MatPaginator,LayoutComponent],
   templateUrl: './lead-processing.component.html',
   styleUrls: ['./lead-processing.component.css'],
 })
@@ -29,13 +29,6 @@ export class LeadProcessingComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchLeads();
-
-    // Uncomment this to test with hardcoded data
-    // this.dataSource.data = [
-    //   { firstName: 'John', lastName: 'Doe', userName: 'jdoe', email: 'jdoe@example.com', age: 25, _id: '1', userId: 'u1' },
-    //   { firstName: 'Jane', lastName: 'Doe', userName: 'jadoe', email: 'jadoe@example.com', age: 28, _id: '2', userId: 'u2' }
-    // ];
-    // console.log('Hardcoded Table Data:', this.dataSource.data);
   }
 
   fetchLeads(): void {
@@ -51,7 +44,7 @@ export class LeadProcessingComponent implements OnInit {
     const userRole = tokenPayload.role; // Assuming the role is stored in the 'role' field
 
     // Define the API URL based on user role
-    const apiUrl = userRole === 'admin' ? 'http://localhost:5000/api/leads' : 'http://localhost:5000/api/leads/me';
+    const apiUrl = userRole === 'admin' ? 'http://localhost:5000/api/leads' : 'http://localhost:5000/api/leads/${userId}';
 
     this.http.get<any[]>(apiUrl, {
       headers: {
@@ -61,22 +54,12 @@ export class LeadProcessingComponent implements OnInit {
       .subscribe(
         (data) => {
           console.log('Fetched Leads:', data);
-
-          // Normalize the response to always be an array
           if (!Array.isArray(data)) {
             data = [data]; // Wrap single object in an array
           }
-
           this.dataSource.data = data; // Set the data to the data source
-
-          // Log the table data to check if it's assigned correctly
-          console.log('Table Data:', this.dataSource.data);
-
-          // Set paginator and sort after data is loaded
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
-
-          // Detect changes to refresh the UI
           this.cdr.detectChanges();
         },
         (error) => {
@@ -84,7 +67,6 @@ export class LeadProcessingComponent implements OnInit {
         }
       );
   }
-
 
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
@@ -95,7 +77,6 @@ export class LeadProcessingComponent implements OnInit {
     const sortedData = this.dataSource.data.slice().sort((a, b) => {
       return this.sortDirection === 'asc' ? a.age - b.age : b.age - a.age;
     });
-
     this.dataSource.data = sortedData;
     this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
   }
