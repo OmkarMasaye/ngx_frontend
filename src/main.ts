@@ -4,11 +4,13 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app/app.routes';  // Import your route configuration
 import { appConfig } from './app/app.config';  // Import appConfig
 import { importProvidersFrom } from '@angular/core';
-import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbChatModule } from '@nebular/theme';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';  // Import animations
 import { HTTP_INTERCEPTORS } from '@angular/common/http';  // For interceptors
 import { AuthInterceptor } from './app/auth/auth.interceptor';  // Import your AuthInterceptor
 import { AuthGuard } from './app/auth/auth.guard';  // Import your AuthGuard
+import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { NbIconLibraries } from '@nebular/theme';
 
 // Merge appConfig with routing configuration
 bootstrapApplication(AppComponent, {
@@ -17,7 +19,9 @@ bootstrapApplication(AppComponent, {
     provideRouter(routes),  // Add routing providers here
     importProvidersFrom(
       NbThemeModule.forRoot({ name: 'default' }),  // Configure the default theme
-      NbLayoutModule
+      NbLayoutModule,
+      NbChatModule,
+      NbEvaIconsModule
     ),
     ...(appConfig.providers || []),  // Include other providers from appConfig
     

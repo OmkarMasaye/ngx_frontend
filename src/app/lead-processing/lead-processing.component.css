@@ -1,6 +1,6 @@
 /* Styles for Lead Processing component */
 .lead-processing-container {
-  margin-top: -120px; /* Account for navbar height */
+  margin-top: 10px; /* Account for navbar height */
   margin-left: 250px; /* Account for sidebar width */
   /* height: calc(100vh - 80px);  */
   padding: 20px; /* Add some padding for aesthetics */

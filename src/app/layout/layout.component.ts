@@ -46,7 +46,6 @@ export class LayoutComponent {
   }
 
   isActive(route: string): boolean {
-    // Check for exact match or a match with dynamic route
     return this.currentRoute === route || 
            (route.includes(':id') && this.currentRoute.startsWith(route.split(':')[0]));
   }

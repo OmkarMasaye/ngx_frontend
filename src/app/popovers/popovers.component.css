@@ -1,0 +1,23 @@
+/* Adjust the layout to fit between navbar and sidebar */
+.popover-layout-column {
+    margin-top: 0px; /* Adjust for the fixed navbar height */
+    margin-left: 260px; /* Match the sidebar width */
+    padding: 20px; /* Add padding to the left, right, and bottom */
+    position: relative;
+    z-index: 1;
+  }
+  
+  .nb-card-body {
+    margin: 0 -0.5rem;
+  }
+  
+  button,
+  p {
+    margin: 0.5rem 0.5rem 0;
+  }
+  
+  .popover-card {
+    margin: 0;
+    max-width: 20rem;
+  }
+  

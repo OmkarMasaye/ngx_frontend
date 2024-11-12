@@ -1,0 +1,38 @@
+<app-layout></app-layout>
+<div class="main-content p-4">
+  <nb-layout>
+    <nb-layout-column>
+      <div class="infinite-cards row">
+        <!-- First Card Section -->
+        <div class="col-md-12 col-lg-6 col-xxxl-6">
+          <nb-card class="own-scroll">
+            <nb-card-header>Own Scroll</nb-card-header>
+            <nb-list nbInfiniteList [threshold]="500" (bottomThreshold)="loadNext(firstCard)">
+              <nb-list-item *ngFor="let newsPost of firstCard.news">
+                <app-new-post [post]="newsPost"></app-new-post>
+              </nb-list-item>
+              <nb-list-item *ngFor="let _ of firstCard.placeholders">
+                <app-new-post-placeholder></app-new-post-placeholder>
+              </nb-list-item>
+            </nb-list>
+          </nb-card>
+        </div>
+
+        <!-- Second Card Section -->
+        <div class="col-md-12 col-lg-6 col-xxxl-6">
+          <nb-card>
+            <nb-card-header>Window Scroll</nb-card-header>
+            <nb-list nbInfiniteList listenWindowScroll [threshold]="500" (bottomThreshold)="loadNext(secondCard)">
+              <nb-list-item *ngFor="let newsPost of secondCard.news">
+                <app-new-post [post]="newsPost"></app-new-post>
+              </nb-list-item>
+              <nb-list-item *ngFor="let _ of secondCard.placeholders">
+                <app-new-post-placeholder></app-new-post-placeholder>
+              </nb-list-item>
+            </nb-list>
+          </nb-card>
+        </div>
+      </div>
+    </nb-layout-column>
+  </nb-layout>
+</div>

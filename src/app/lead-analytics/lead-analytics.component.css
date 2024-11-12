@@ -1,6 +1,6 @@
 /* Styles for the analytics container */
 .analytics-container {
-  margin-top: -120px; /* Ensure it starts below the navbar */
+  margin-top: -10px; /* Ensure it starts below the navbar */
   margin-left: 250px; /* Account for sidebar width */
  
   overflow-y: auto; /* Allow scrolling for the container */
