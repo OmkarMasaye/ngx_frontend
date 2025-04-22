@@ -1,0 +1,82 @@
+<div class="dashboard">
+  <div class="top-row">
+    <!-- First chart -->
+    <nb-card>
+      <nb-card-header>Lead Counts</nb-card-header>
+      <nb-card-body>
+        <div class="controls">
+          <label for="dateRange1">Date Range: </label>
+          <select id="dateRange1" [(ngModel)]="selectedDateRange" (change)="onDateRangeChange()">
+            <option value="today">Today</option>
+            <option value="thisWeek">This Week</option>
+            <option value="thisMonth">This Month</option>
+            <option value="custom">Custom</option>
+          </select>
+
+          <div *ngIf="selectedDateRange === 'custom'" class="custom-dates">
+            <label>Start: </label>
+            <input type="date" [(ngModel)]="customStartDate" (ngModelChange)="loadChartData()" />
+            <label>End: </label>
+            <input type="date" [(ngModel)]="customEndDate" (ngModelChange)="loadChartData()" />
+          </div>
+        </div>
+
+        <canvas baseChart [data]="chartData" [options]="chartOptions" [type]="'bar'"></canvas>
+      </nb-card-body>
+    </nb-card>
+
+    <!-- Second chart -->
+    <nb-card>
+      <nb-card-header>Leads Over Time (IST)</nb-card-header>
+      <nb-card-body>
+        <div class="controls">
+          <label for="dateRange2">Date Range: </label>
+          <select id="dateRange2" [(ngModel)]="selecteddateRange" (change)="ondateRangeChange()">
+            <option value="today">Today</option>
+            <option value="thisWeek">This Week (Mon-Sun)</option>
+            <option value="thisMonth">This Month</option>
+            <option value="custom">Custom</option>
+          </select>
+
+          <div *ngIf="selecteddateRange === 'custom'" class="custom-dates">
+            <label>Start: </label>
+            <input type="date" [(ngModel)]="customstartDate" (ngModelChange)="loadchartData()" />
+            <label>End: </label>
+            <input type="date" [(ngModel)]="customendDate" (ngModelChange)="loadchartData()" />
+          </div>
+        </div>
+
+        <canvas baseChart [data]="chartdata" [options]="chartoptions" [type]="'line'"></canvas>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  <div class="bottom-row">
+    <!-- Third chart (centered below) -->
+    <div class="chart-container-wrapper">
+      <h2>Credit Score Distribution</h2>
+      <div class="chart-container-body">
+        <div class="controls">
+          <label for="dateRange3">Date Range: </label>
+          <select id="dateRange3" [(ngModel)]="selecteddateeRange" (change)="onDateeChange()">
+            <option value="today">Today</option>
+            <option value="thisWeek">This Week (Mon-Sun)</option>
+            <option value="thisMonth">This Month</option>
+            <option value="custom">Custom</option>
+          </select>
+      
+          <div *ngIf="selecteddateeRange === 'custom'" class="custom-dates">
+            <label>Start: </label>
+            <input type="date" [(ngModel)]="customstarttDate" (ngModelChange)="loaddChartData()" />
+            <label>End: </label>
+            <input type="date" [(ngModel)]="customenddDate" (ngModelChange)="loaddChartData()" />
+          </div>
+        </div>
+        <canvas baseChart [data]="charttData" [options]="charttOptions" [type]="'bar'"></canvas>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Map can be added below or in a separate row if needed -->
+  <!-- <div id="map"></div> -->
+</div>

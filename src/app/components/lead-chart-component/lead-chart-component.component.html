@@ -1,0 +1,72 @@
+<!-- Dashboard container with inverted triangle layout -->
+<div class="dashboard-container">
+  <!-- Top row with two charts side by side -->
+  <div class="top-row">
+    <nb-card class="chart-card">
+      <nb-card-header>Lead Counts</nb-card-header>
+      <nb-card-body>
+        <div class="controls">
+          <label for="dateRange">Date Range: </label>
+          <select id="dateRange" [(ngModel)]="selectedDateRange" (change)="onDateRangeChange()">
+            <option value="today">Today</option>
+            <option value="thisWeek">This Week</option>
+            <option value="thisMonth">This Month</option>
+            <option value="custom">Custom</option>
+          </select>
+  
+          <div *ngIf="selectedDateRange === 'custom'" class="custom-dates">
+            <label>Start: </label>
+            <input type="date" [(ngModel)]="customStartDate" (ngModelChange)="loadChartData()" />
+            <label>End: </label>
+            <input type="date" [(ngModel)]="customEndDate" (ngModelChange)="loadChartData()" />
+          </div>
+        </div>
+  
+        <canvas baseChart [data]="chartData" [options]="chartOptions" [type]="'bar'"></canvas>
+      </nb-card-body>
+    </nb-card>
+  
+    <div class="chart-card pie-chart-container">
+      <div class="pie-chart-title"> Model Distribution</div>
+      <ngx-charts-pie-chart
+        [view]="view"
+        [results]="charrtData"
+        [scheme]="colorScheme"
+        [labels]="labels"
+        [explodeSlices]="explodeSlices"
+        [doughnut]="doughnut"
+        [gradient]="gradient"
+       
+        [legendTitle]="legendTitle"
+      >
+      </ngx-charts-pie-chart>
+    </div>
+  </div>
+  
+  <!-- Bottom row with centered chart -->
+  <div class="bottom-row">
+    <nb-card class="chart-card line-chart">
+      <nb-card-header>Leads Over Time (IST)</nb-card-header>
+      <nb-card-body>
+        <div class="controls">
+          <label for="dateRangeLine">Date Range: </label>
+          <select id="dateRangeLine" [(ngModel)]="selecteddateRange" (change)="ondateRangeChange()">
+            <option value="today">Today</option>
+            <option value="thisWeek">This Week (Mon-Sun)</option>
+            <option value="thisMonth">This Month</option>
+            <option value="custom">Custom</option>
+          </select>
+  
+          <div *ngIf="selecteddateRange === 'custom'" class="custom-dates">
+            <label>Start: </label>
+            <input type="date" [(ngModel)]="customstartDate" (ngModelChange)="loadchartData()" />
+            <label>End: </label>
+            <input type="date" [(ngModel)]="customendDate" (ngModelChange)="loadchartData()" />
+          </div>
+        </div>
+  
+        <canvas baseChart [data]="chartdata" [options]="chartoptions" [type]="'line'"></canvas>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

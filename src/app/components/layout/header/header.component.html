@@ -1,0 +1,38 @@
+<header class="header">
+    <button class="menu-toggle-btn" (click)="toggleSidebar.emit()">
+        <i class="fas fa-bars"></i>
+    </button>
+    <div class="search-container">
+      <!-- <input type="text" placeholder="Search..." class="search-input"> -->
+    </div>
+    <div class="header-actions">
+      <div class="user-menu">
+        <button class="user-menu-btn">
+          <i class="fas fa-user"></i>Omkar
+        </button>
+        <div class="dropdown-menu">
+          
+            <h5 class="sidebar-header">My Account</h5>
+            <hr class="sidebar-divider" />
+            <ul class="sidebar-menu">
+              <li>
+                <a routerLink="edit-profile" routerLinkActive="active">
+                  <i class="fa-solid fa-user"></i> Edit Profile
+                </a>
+              </li>
+              <li>
+                <a routerLink="change-password" routerLinkActive="active">
+                  <i class="fa-solid fa-lock"></i> Change Password
+                </a>
+              </li>
+              <li>
+                <a href="#" class="logout">
+                  <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </a>
+              </li>
+            </ul>
+                
+        </div>
+      </div>
+    </div>
+  </header>

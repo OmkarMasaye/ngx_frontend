@@ -1,0 +1,146 @@
+/* Dashboard container with inverted triangle layout */
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Top row with two charts side by side */
+.top-row {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  width: 100%;
+  margin-top:10px;
+  justify-content: space-between;
+}
+
+/* Bottom row with centered chart */
+.bottom-row {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Common styling for all chart containers */
+nb-card,
+.chart-container-wrapper {
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  height: 450px;
+}
+
+/* Make top row cards take equal width */
+.top-row nb-card,
+.top-row .chart-container-wrapper {
+  width: 48%;
+}
+
+/* Make bottom row card centered and slightly wider */
+.bottom-row nb-card,
+.bottom-row .chart-container-wrapper {
+  width: 70%;
+  max-width: 800px;
+}
+
+/* Header styling */
+nb-card-header,
+.chart-container-wrapper h2 {
+  font-size: 1rem;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #ddd;
+  margin: 0;
+}
+
+.chart-container-wrapper h2 {
+  text-align: center;
+}
+
+/* Body styling */
+nb-card-body,
+.chart-container-body {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 40px);
+}
+
+/* Controls styling */
+.controls {
+  margin-bottom: 10px;
+}
+
+.controls label,
+.controls select,
+.controls input[type="date"] {
+  font-size: 0.9rem;
+  margin-right: 5px;
+}
+
+.custom-dates {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Canvas styling for charts */
+nb-card-body canvas,
+.chart-container-body canvas {
+  flex: 1;
+  width: 100%;
+}
+
+/* Map styling */
+#map {
+  height: 600px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* Responsive adjustments for tablets */
+@media (max-width: 992px) {
+  .bottom-row nb-card,
+  .bottom-row .chart-container-wrapper {
+    width: 85%;
+  }
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+  .top-row {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .top-row nb-card,
+  .top-row .chart-container-wrapper,
+  .bottom-row nb-card,
+  .bottom-row .chart-container-wrapper {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard {
+    padding: 10px;
+    gap: 20px;
+  }
+  
+  nb-card,
+  .chart-container-wrapper {
+    height: 300px;
+  }
+}

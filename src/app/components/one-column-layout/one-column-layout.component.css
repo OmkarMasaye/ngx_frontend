@@ -1,0 +1,351 @@
+:host {
+    display: block;
+    height: 100vh;
+    width: 100vw;
+  }
+  
+  /* Target the nb-layout element and its children */
+  ::ng-deep nb-layout {
+    margin: 0 !important;
+    min-height: 100vh !important;
+  }
+  
+  ::ng-deep .layout-container {
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: 100vh !important;
+  }
+  
+  ::ng-deep .layout-content {
+    min-height: calc(100vh - 4.75rem) !important;
+  }
+  
+  ::ng-deep .scrollable-container {
+    height: 100vh !important;
+    padding: 0 !important;
+  }
+  
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 1rem;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .user-profile {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  /* Hide sidebar toggle on desktop */
+  .sidebar-toggle {
+    margin-right: 1rem;
+    display: none; /* Hide by default on desktop */
+  }
+  
+  /* Fixed sidebar styling */
+  .menu-sidebar {
+    width: 16rem;
+    height: 100vh !important;
+    background-color: white !important;
+    transition: width 0.3s ease;
+  }
+  
+  /* Ensure layout column takes full available height and respects sidebar */
+  ::ng-deep nb-layout-column {
+    padding: 1.25rem !important;
+    height: calc(100vh - 4.75rem) !important;
+    margin-left: 16rem !important; /* Match the sidebar width */
+  }
+  
+  .footer-container {
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  /* Sidebar styling */
+  ::ng-deep nb-sidebar {
+    background-color: white !important;
+    box-shadow: 0 0.5rem 1rem 0 rgba(44, 51, 73, 0.1);
+    height: 100vh !important;
+    z-index: 1000;
+  }
+  
+  ::ng-deep nb-sidebar .main-container {
+    height: 100vh !important;
+    background-color: white !important;
+  }
+  
+  ::ng-deep nb-sidebar .scrollable {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    background-color: white !important;
+  }
+  
+  ::ng-deep nb-menu {
+    margin-top: 0.5rem;
+  }
+  
+  ::ng-deep nb-menu .menu-item {
+    border-radius: 0.25rem;
+    margin: 0.25rem 0.5rem;
+  }
+  
+  ::ng-deep nb-menu .menu-item a {
+    padding: 0.75rem 1rem !important;
+  }
+  
+  ::ng-deep nb-menu .menu-item.active {
+    background-color: #edf1f7 !important;
+  }
+  
+  ::ng-deep nb-menu .menu-item:hover {
+    background-color: #f5f7fc !important;
+  }
+  
+  /* Mobile adjustments */
+  @media (max-width: 768px) {
+    .menu-sidebar {
+      width: 0; /* Collapsed by default on mobile */
+      position: fixed;
+    }
+    
+    .sidebar-toggle {
+      display: block; /* Show toggle button on mobile */
+    }
+    
+    ::ng-deep nb-layout-column {
+      margin-left: 0 !important; /* No sidebar margin on mobile */
+    }
+    
+    ::ng-deep nb-sidebar.expanded {
+      width: 16rem !important;
+    }
+  }
+
+  /* Add this to your existing CSS */
+/* Add this to your existing CSS */
+.left-section {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Space between toggle button and logo */
+  }
+  
+  /* Adjust the sidebar toggle button */
+  .sidebar-toggle {
+    margin-right: 0.5rem;
+    display: none; /* Hidden on desktop */
+    flex-shrink: 0; /* Prevents button from shrinking */
+    padding: 0.5rem; /* Add some padding for easier clicking */
+  }
+  
+  /* Make sure logo text doesn't wrap or overflow */
+  .logo {
+    font-size: 1.3rem; /* Slightly reduced size for mobile */
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* Mobile adjustments */
+  @media (max-width: 768px) {
+    .sidebar-toggle {
+      display: flex; /* Show toggle button on mobile */
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .header-container {
+      padding: 0 0.5rem; /* Reduce padding on small screens */
+    }
+    
+    .logo {
+      font-size: 1.2rem; /* Even smaller on very small screens */
+    }
+  }
+
+  /* Highlight active menu items */
+.nb-menu .menu-item.active > a {
+    background-color: #e7f1ff;
+    color: #3366ff;
+  }
+  
+  /* Rotate dropdown icon when open */
+  .nb-menu .menu-item .menu-icon.expand-state {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+  }
+  
+  /* Style dropdown menu */
+  .nb-menu .menu-items .menu-item .menu-items {
+    background-color: #f8f9fa;
+    padding-left: 20px;
+  }
+  
+  /* Ensure dropdown items are styled */
+  .nb-menu .menu-item .menu-items .menu-item a {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+  
+  /* Active dropdown item */
+  .nb-menu .menu-item .menu-items .menu-item.active a {
+    font-weight: bold;
+    color: #3366ff;
+  }
+  /* Ensure the layout takes full height */
+nb-layout {
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Ensure the layout column takes available space */
+  nb-layout-column {
+    flex: 1; /* Grow to fill available space */
+    overflow: auto; /* Handle overflow content with scrolling */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Adjust the container to fit within the column */
+  .container {
+    flex: 1; /* Grow to fill the column */
+    max-width: 100%; /* Ensure it doesn’t exceed the column width */
+    margin: 0; /* Remove auto margin to respect sidebar */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    height: 100%; /* Fill the available height */
+    overflow: auto; /* Allow scrolling if content overflows */
+  }
+  
+  /* Ensure fullcontainer respects the layout */
+  .fullcontainer {
+    display: flex;
+    flex-direction: row;
+    height: 100%; /* Fill the available height */
+    width: 100%; /* Fill the available width */
+  }
+  
+  /* Adjust search-container to fit within the layout */
+  .search-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    width: 100%; /* Ensure it fits within the container */
+  }
+  
+  /* Ensure datedown and its children fit */
+  .datedown {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  /* Ensure table and paginator fit */
+  table {
+    width: 100%; /* Ensure the table spans the container */
+  }
+  
+  mat-paginator {
+    width: 100%; /* Ensure paginator spans the container */
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+   
+      
+    .container {
+      padding: 10px; /* Adjust padding for smaller screens */
+    }
+    .search-container {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .datedown {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+
+  :host {
+    display: block;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden; /* Prevent unwanted scrolling */
+  }
+  
+  ::ng-deep nb-layout {
+    margin: 0 !important;
+    min-height: 100vh !important;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  ::ng-deep .layout-container {
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: 100vh !important;
+    display: flex;
+    flex: 1;
+  }
+  
+  ::ng-deep .layout-content {
+    min-height: calc(100vh - 4.75rem) !important; /* Adjust based on header height */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  ::ng-deep nb-layout-column {
+    padding: 0 !important; /* Remove padding to avoid gaps */
+    height: 100%; /* Use 100% to fill available space */
+    margin-left: 16rem !important; /* Match sidebar width */
+    flex: 1;
+    overflow: auto; /* Allow scrolling if content overflows */
+    box-sizing: border-box;
+    width: calc(100% - 16rem); /* Ensure column width accounts for sidebar */
+  }
+  
+  .menu-sidebar {
+    width: 16rem;
+    height: 100vh !important;
+    background-color: white !important;
+    transition: width 0.3s ease;
+    position: fixed; /* Ensure sidebar stays fixed */
+    top: 0;
+    left: 0;
+    z-index: 1001; /* Above content but below header */
+    box-shadow: 0 0.5rem 1rem 0 rgba(44, 51, 73, 0.1); /* Ensure shadow doesn’t extend into content */
+  }
+  
+  @media (max-width: 768px) {
+    .menu-sidebar {
+      width: 0;
+      position: fixed;
+    }
+  
+    ::ng-deep nb-layout-column {
+      margin-left: 0 !important; /* Remove margin on mobile */
+      width: 100%; /* Full width on mobile */
+    }
+  
+    ::ng-deep nb-sidebar.expanded {
+      width: 16rem !important;
+    }
+  }

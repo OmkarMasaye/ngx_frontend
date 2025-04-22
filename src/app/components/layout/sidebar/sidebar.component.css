@@ -1,0 +1,184 @@
+/* General Sidebar Styles */
+.sidebar {
+    width: 220px;
+    height: 100%;
+    background-color: #f5f7f9;
+    border-right: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .brand {
+    padding: 1rem;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between; /* Keeps close button at the right */
+    align-items: center;
+  }
+
+   .fa-times {
+    font-weight: 900;
+    margin-right: -150px;
+   }
+  
+  .brand h2 {
+    color: #4285f4;
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  
+  .navigation {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    flex-grow: 1;
+  }
+  
+  .nav-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.2s;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .nav-item:hover {
+    background-color: #e8eef7;
+  }
+  
+  .nav-item.active {
+    background-color: #e8eef7;
+    color: #4285f4;
+    border-left: 3px solid #4285f4;
+  }
+  
+  .nav-item i {
+    margin-right: 10px;
+    font-size: 18px;
+  }
+  
+  .close-btn {
+    display: none; /* Hidden by default on desktop */
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #333;
+    padding: 0;
+    margin-left: auto; /* Ensures it sticks to the right */
+  }
+  
+  /* Dropdown Styles */
+  .nav-item-dropdown {
+    position: relative;
+    width: 100%;
+  }
+  
+  .dropdown-icon {
+    margin-left: auto;
+    transition: transform 0.3s ease;
+  }
+  
+  .dropdown-icon.rotated {
+    transform: rotate(180deg);
+  }
+  
+  .dropdown-menu {
+    display: block;
+    background-color: #f5f7f9;
+    width: 100%;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    opacity: 0;
+    max-height: 0;
+    visibility: hidden;
+  }
+  
+  .dropdown-menu.open {
+    opacity: 1;
+    max-height: 500px;
+    visibility: visible;
+  }
+  
+  .dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.2s;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #e8eef7;
+  }
+  
+  .dropdown-item.active {
+    color: #4285f4;
+    background-color: #e8eef7;
+    font-weight: 500;
+  }
+  
+  /* Sidebar Toggle Button (Hamburger Icon) */
+  .sidebar-toggle-btn {
+    display: none; /* Hidden by default on desktop */
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #333;
+    cursor: pointer;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1001; /* Above sidebar */
+    transition: opacity 0.3s ease; /* Smooth hide/show */
+  }
+  
+  .sidebar-toggle-btn.hidden {
+    opacity: 0;
+    pointer-events: none; /* Prevents clicks when hidden */
+  }
+  
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 260px;
+      transform: translateX(-100%);
+      z-index: 1000;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    }
+  
+    .sidebar.active {
+      transform: translateX(0);
+    }
+  
+    .close-btn {
+      display: block; /* Show close button on mobile */
+    }
+  
+    .sidebar-toggle-btn {
+      display: block; /* Show hamburger icon on mobile */
+    }
+  
+    .brand h2 {
+      font-size: 1.25rem;
+    }
+  
+    .nav-item {
+      padding: 1rem;
+      font-size: 1.1rem;
+    }
+  
+    .dropdown-item {
+      padding: 1rem 1rem 1rem 3rem;
+      font-size: 1.1rem;
+    }
+  }

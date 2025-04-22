@@ -1,0 +1,33 @@
+<nb-layout [windowMode]="false">
+    <!-- Header -->
+    <nb-layout-header fixed>
+      <div class="header-container">
+        <div class="left-section">
+          <!-- Only visible on mobile devices -->
+          <button nbButton ghost (click)="toggleSidebar()" class="sidebar-toggle">
+            <nb-icon icon="menu-2-outline"></nb-icon>
+          </button>
+          <div class="logo">My App</div>
+        </div>
+        <div class="user-profile">
+          <nb-icon icon="person-outline"></nb-icon>
+          <span>User</span>
+        </div>
+      </div>
+    </nb-layout-header>
+  
+    <!-- Sidebar - fixed on desktop -->
+    <nb-sidebar 
+      class="menu-sidebar" 
+      tag="menu-sidebar" 
+      responsive 
+      fixed
+      state="expanded">
+      <nb-menu [items]="menuItems" (itemClick)="onMenuItemClick($event)"></nb-menu>
+    </nb-sidebar>
+  
+    <!-- Main Content -->
+    <nb-layout-column>
+      <router-outlet></router-outlet>
+    </nb-layout-column>
+  </nb-layout>

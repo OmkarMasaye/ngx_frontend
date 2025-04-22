@@ -1,0 +1,225 @@
+/* Ensure the host element fills the layout column */
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Fill the available height of the layout column */
+  width: 100%; /* Fill the available width */
+}
+
+/* Ensure the fullcontainer takes the full space and adjusts for sidebar */
+.fullcontainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Fill the layout column height */
+  width: 100%; /* Fill the available width */
+  margin-left: 0; /* Reset margin, handled by layout-column */
+  box-sizing: border-box;
+  padding: 0; /* Remove any internal padding */
+}
+
+/* Style the container to fit the content area */
+.container {
+  flex: 1;
+  padding: 20px;
+  max-width: 100%;
+  margin: 0;
+  background-color: #fff;
+  border-radius: 1px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  height: calc(100% - 40px); /* Subtract padding */
+  overflow: hidden; /* Prevent container from scrolling */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Style the search container to fit within the layout */
+/* Ensure search fields and buttons align in the same line */
+.search-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center; /* This ensures vertical alignment */
+  gap: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  margin-top: 25px;
+}
+
+/* Make sure search fields have consistent height */
+.search-field {
+  width: 350px;
+  min-width: 200px;
+  margin-bottom: 0;
+  margin-top:20px; /* Remove any bottom margin */
+}
+/* Add gap between search and reset buttons */
+.search-buttons {
+  display: flex;
+  flex-direction: row; /* For desktop, keep buttons in a row */
+  gap: 15px; /* Adds space between buttons */
+  
+}
+
+/* Update the mobile version to maintain the gap in column layout */
+@media (max-width: 768px) {
+  .search-buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 15px; /* Maintain consistent gap in mobile view */
+  }
+}
+.search-button, 
+.show-all-button {
+  height: 56px; /* Match the height of mat-form-field */
+  margin-top: 0; /* Remove any top margin */
+  align-self: center; 
+  /* Center vertically in flex container */
+}
+
+/* Fix mat-form-field internal styling to ensure consistent height */
+.mat-form-field-wrapper {
+  padding-bottom: 0;
+}
+
+.mat-form-field-flex {
+  align-items: center;
+}
+.table-wrapper {
+  overflow-x: auto; /* Enable horizontal scrolling */
+  flex: 1; /* Take remaining space */
+  min-height: 0; /* Ensure it doesn't overflow parent */
+}
+
+/* Style the datedown section */
+.datedown {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Style the date container */
+.date-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Style the custom date range */
+.custom-date-range {
+  display: flex;
+  gap: 20px;
+}
+
+/* Ensure date fields and buttons have consistent height */
+.date-field,
+.downloadbutton {
+  height: 56px;
+  display: flex;
+  align-items: center;
+}
+
+/* Ensure table and paginator fit and fill the remaining space */
+table {
+  width: 100%; /* Full width within the container */
+  flex: 1; /* Grow to fill available space */
+  overflow: auto; /* Handle horizontal overflow if needed */
+}
+
+mat-paginator {
+  width: 100%; /* Full width within the container */
+  margin-top: 20px; /* Space above paginator */
+}
+
+/* Style the overlay for loading */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Responsive adjustments */
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .fullcontainer {
+    margin-left: 0;
+    width: 100%;
+    padding: 0;
+  }
+  
+  .container {
+    padding: 10px;
+    height: calc(100% - 20px);
+  }
+  
+  /* Fix search container in mobile */
+  .search-container {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 15px;
+  }
+  
+  /* Make search fields full width and consistent in mobile */
+  .search-field {
+    width: 100% !important;
+    min-width: 100% !important;
+    margin: 0 !important;
+  }
+  
+  /* Make buttons full width and consistent in mobile */
+  .search-button, 
+  .show-all-button {
+    width: 100%;
+    margin: 5px 0;
+    height: 48px; /* Slightly smaller height for mobile */
+  }
+  
+  /* Button container for mobile */
+  .search-buttons {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+  
+  .datedown {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+  
+  .date-container {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 15px;
+  }
+  
+  .date-field {
+    width: 100%;
+    margin: 0;
+  }
+  
+  .custom-date-range {
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+  }
+  
+  /* Make download button full width in mobile */
+  .downloadbutton {
+    width: 100%;
+    margin: 5px 0;
+  }
+}

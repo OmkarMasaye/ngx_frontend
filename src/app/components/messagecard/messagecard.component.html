@@ -1,0 +1,12 @@
+<div class="message-overlay" *ngIf="message" (click)="closeCard()">
+    <div class="message-card-container">
+      <div class="card message-card" (click)="$event.stopPropagation()">
+        <div class="card-body">
+          <p class="card-text">{{ message }}</p>
+          <div class="d-flex justify-content-end">
+            <button class="btn btn-primary" (click)="closeCard()">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

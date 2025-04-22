@@ -1,7 +1,247 @@
-/* src/styles.css */
+
+ 
 nb-card {
     transform: translate3d(0, 0, 0);
 }
+nb-layout {
+    min-height: 100vh !important;
+  }
+  
+  nb-layout-column {
+    padding: 1.25rem !important;
+  }
+  
+  .layout-container {
+    height: 100vh !important;
+    min-height: 100vh !important;
+  }
+  
+  /* Fix for rendering issues in some browsers */
+  nb-card {
+    transform: translate3d(0, 0, 0);
+  }
+  
+  /* Ensure content areas take up available space */
+  .content-area {
+    height: 100%;
+    width: 100%;
+  }
+  
+  /* Remove potential double scrollbars */
+  .scrollable-container {
+    overflow: auto !important;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    nb-layout-header nav {
+      padding: 0 0.5rem !important;
+    }
+  }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+  html, body { height: 100%; }
+  body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+  
+  html, body { height: 100%; }
+  body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+  /* You can add global styles to this file, and also import other style files */
+  
+  html, body { height: 100%; }
+  body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+  
+  .mat-mdc-paginator-range-actions {
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      font-weight: 500;
+    }
+    .mat-mdc-paginator-page-size {
+      display: flex;
+      font-size: 15px;
+      align-items: baseline;
+      margin-right: 8px;
+      font-weight: 500;
+  }
+  
+  .mat-sort-header-arrow {
+      height: 12px;
+      width: 12px;
+      min-width: 12px;
+      position: relative;
+      display: flex
+  ;
+      color: #f5f2f2;
+      opacity: 0;
+  }
+  
+  .mat-mdc-unelevated-button[_ngcontent-ng-c3324747188] {
+      --mdc-filled-button-container-shape: 15px !important;
+  }
+  
+  .mdc-text-field--outlined {
+      --mdc-outlined-text-field-container-shape: 15px !important;
+    }
+    .mat-sort-header-arrow {
+      --mat-sort-arrow-color: #ffffff !important; /* Sets the sort arrow color to white */
+    }
+    
+    .mdc-text-field:not(.mdc-text-field--invalid):not(.mdc-text-field--focused):not(.mdc-text-field--disabled) {
+      .mdc-notched-outline > * {
+        border-color: rgba(0,0,0, 0.2) !important;
+      }
+    }
+    .mat-mdc-unelevated-button{
+      --mdc-filled-button-container-shape: 15px !important; /* Sets the border radius to 10px */
+    }
+    
+    
+    /* Target mat-mdc-table and its children */
+    .mat-mdc-table tbody,
+    .mat-mdc-table tfoot,
+    .mat-mdc-table thead,
+    .mat-mdc-cell,
+    .mat-mdc-footer-cell,
+    .mat-mdc-header-row,
+    .mat-mdc-row,
+    .mat-mdc-footer-row,
+    .mat-mdc-table .mat-mdc-header-cell {
+        background: inherit !important; /* Inherit background for the rows */
+    }
+    
+    /* Set border styles for table cells */
+    tbody, td, tfoot, th, thead, tr {
+        border-color: #131010 !important; /* Light gray border color */
+        border-top-color: #ddd !important;
+        border-right-color: #ddd !important;
+        border-bottom-color: #ddd !important;
+        border-left-color: #ddd !important;
+        border-style: solid;
+        border-width: 1px; /* Add borders with width for each cell */
+    }
+    
+    /* Ensure box-sizing is applied universally */
+    *, ::after, ::before {
+        box-sizing: border-box;
+    }
+    
+    /* Header row styling */
+    .mat-mdc-header-row {
+        background-color: #3a3737 !important; /* Light grey background color for header */
+        color: #ece7e7 !important; /* Dark text color for better readability */
+    }
+    
+    /* Header cell styling */
+    .mat-mdc-header-cell {
+        padding: 12px 15px; /* Add padding for better readability */
+        font-weight: bold; /* Make header titles bold */
+        font-size: 16px; /* Make header titles bigger */
+        text-align: center; /* Center align the text */
+    }
+    
+    /* Optional: Style the rows */
+    .mat-mdc-row {
+        background-color: #fff; /* White background for rows */
+    }
+    
+    /* Optional: Hover effect for rows */
+    .mat-mdc-row:hover {
+        background-color: #f1f1f1; /* Light gray background when hovering */
+    }
+    
+    /* Optional: Footer row styling */
+    .mat-mdc-footer-row {
+        background-color: #eeeeee; /* Slightly lighter background for footer */
+    }
+    
+    /* Optional: Footer cell styling */
+    .mat-mdc-footer-cell {
+        padding: 12px 15px;
+        text-align: center;
+        font-weight: normal;
+    }
+    .mat-mdc-raised-button {
+      border-radius: 15px !important; /* Replace 12px with your desired border radius */
+    }
+
+    /* Ensure the host element fills the layout column */
+/* Ensure the host element fills the layout column */
+
+  
+  /* Optional: Adjust sidebar width if needed */
+  .menu-sidebar {
+    width: 250px; /* Default Nebular sidebar width; adjust if different */
+  }
+  
+  /* Ensure layout column respects sidebar and header */
+  nb-layout-column {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 60px); /* Subtract header height (default ~60px) */
+    margin-top: 60px; /* Offset for fixed header */
+    overflow: auto;
+    width: 100%; /* Ensure full width */
+  }
+
+  :host {
+    display: block;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden; /* Prevent unwanted scrolling */
+  }
+  
+  ::ng-deep nb-layout {
+    margin: 0 !important;
+    min-height: 100vh !important;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  ::ng-deep .layout-container {
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: 100vh !important;
+    display: flex;
+    flex: 1;
+  }
+  
+  ::ng-deep .layout-content {
+    min-height: calc(100vh - 4.75rem) !important; /* Adjust based on header height */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  ::ng-deep nb-layout-column {
+    padding: 1.25rem !important;
+    height: 100%; /* Use 100% to fill available space */
+    margin-left: 16rem !important; /* Match sidebar width */
+    flex: 1;
+    overflow: auto; /* Allow scrolling if content overflows */
+    box-sizing: border-box;
+  }
+  
+  .menu-sidebar {
+    width: 16rem;
+    height: 100vh !important;
+    background-color: white !important;
+    transition: width 0.3s ease;
+    position: fixed; /* Ensure sidebar stays fixed */
+    top: 0;
+    left: 0;
+    z-index: 1001; /* Above content but below header */
+  }
+  
+  @media (max-width: 768px) {
+    .menu-sidebar {
+      width: 0;
+      position: fixed;
+    }
+  
+    ::ng-deep nb-layout-column {
+      margin-left: 0 !important; /* Remove margin on mobile */
+    }
+  
+    ::ng-deep nb-sidebar.expanded {
+      width: 16rem !important;
+    }
+  }

@@ -1,0 +1,45 @@
+/* message-card.component.scss */
+.message-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1050;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .message-card-container {
+    width: 100%;
+    max-width: 450px;
+    padding: 15px;
+  }
+  
+  .message-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    
+    .card-body {
+      padding: 20px;
+    }
+    
+    .card-text {
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+    
+    .btn-primary {
+      background-color: #0d6efd;
+      border-color: #0d6efd;
+      min-width: 80px;
+      
+      &:hover {
+        background-color: #0b5ed7;
+        border-color: #0a58ca;
+      }
+    }
+  }

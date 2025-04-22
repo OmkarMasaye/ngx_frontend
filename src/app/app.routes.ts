@@ -1,24 +1,33 @@
 import { Routes } from '@angular/router';
-import { LeadAnalyticsComponent } from './lead-analytics/lead-analytics.component';
-import { LeadProcessingComponent } from './lead-processing/lead-processing.component';
-import { LoginSignupComponent } from './login-signup/login-signup.component';
-import { AuthGuard } from './auth/auth.guard';  // Import your AuthGuard
-import { LayoutComponent } from './layout/layout.component';
-import { PopoversComponent } from './popovers/popovers.component';
-import { FormsLayoutsComponent } from './forms-layouts/forms-layouts.component';
-import { ChatComponent } from './chat/chat.component';
-import { InfiniteListComponent } from './infinite-list/infinite-list.component';
-import { StepperComponent } from './stepper/stepper.component';
+import { LayoutComponent } from './components/layout/layout.component';
+
+import { authGuard } from './auth.guard';
+import { LoginnComponent } from './components/loginn/loginn.component';
+import { OneColumnLayoutComponent } from './components/one-column-layout/one-column-layout.component';
 
 export const routes: Routes = [
-  { path: 'lead-analytics/:id', component: LeadAnalyticsComponent}, // not Protected for now  canActivate: [AuthGuard] 
-  { path: 'lead-processing', component: LeadProcessingComponent},  // not Protected for now
-  { path: 'login', component: LoginSignupComponent },  // No guard for login
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  {path: 'layout', component: LayoutComponent},
-  {path: 'popovers', component: PopoversComponent},
-  {path: 'forms' , component: FormsLayoutsComponent},
-  {path: 'chats', component: ChatComponent},
-  {path : 'infinite-list', component: InfiniteListComponent},
-  {path : 'stepper' ,component: StepperComponent}
+  { path: 'login', component: LoginnComponent },
+  
+  {
+    path: 'lay',
+    component: OneColumnLayoutComponent,
+    canActivate: [authGuard],
+    children:[
+      {
+        path: 'viewdata/:dataName',
+        loadComponent: () => import('./components/viewdata/viewdata.component').then(m => m.ViewdataComponent)
+      },{
+        path: 'visualizedata/skoda',
+        loadComponent: () => import('./components/lead-chart-component/lead-chart-component.component').then(m => m.LeadChartComponent)
+      },
+      {
+        path: 'visualizedata/loan',
+        loadComponent: () => import('./components/bar/bar.component').then(m => m.BarComponent)
+      },
+
+      
+    ]
+  },
+
+  { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
