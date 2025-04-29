@@ -1,0 +1,200 @@
+.dashboard-container {
+    padding: 20px;
+    background-color: #ffffff;
+    min-height: 100vh;
+  }
+  
+  .dashboard-title {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    margin-top:20px;
+  }
+  
+  .dashboard-subtitle {
+    color: #666;
+    margin-bottom: 24px;
+    font-size: 14px;
+  }
+  
+  .summary-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  
+  @media (min-width: 768px) {
+    .summary-cards {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  .card {
+    background-color: white;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 16px;
+  }
+  
+  .card-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  
+  .card-value {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
+  
+  .card-change {
+    font-size: 12px;
+  }
+  
+  .card-change.positive {
+    color: #28a745;
+  }
+  
+  .status-geo-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  
+  @media (min-width: 768px) {
+    .status-geo-container {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  .status-item, .geo-item, .model-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  
+  .status-label, .geo-label, .model-label {
+    width: 90px;
+    font-weight: 500;
+    font-size: 14px;
+  }
+  
+  .status-bar-container, .geo-bar-container, .model-bar-container {
+    flex: 1;
+    background-color: #e0e0e0;
+    height: 14px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 0 8px;
+  }
+  
+  .status-bar, .geo-bar, .model-bar {
+    height: 100%;
+    border-radius: 4px;
+  }
+  
+  .status-bar.approved {
+    background-color: #28a745;
+  }
+  
+  .status-bar.pending {
+    background-color: #f0ad4e;
+  }
+  
+  .status-bar.rejected {
+    background-color: #dc3545;
+  }
+  
+  .geo-bar, .model-bar {
+    background-color: #007bff;
+  }
+  
+  .status-value, .geo-value, .model-value {
+    margin-left: 8px;
+    font-size: 12px;
+  }
+  
+  .activity-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+  
+  .activity-icon {
+    width: 28px;
+    height: 28px;
+    background-color: #e0e0e0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+    font-weight: 500;
+    color: #333;
+    font-size: 12px;
+  }
+  
+  .activity-details {
+    flex: 1;
+  }
+  
+  .activity-name {
+    font-weight: 500;
+    font-size: 14px;
+  }
+  
+  .activity-time {
+    font-size: 12px;
+    color: #999;
+    margin-left: 8px;
+  }
+  
+  .activity-action {
+    font-size: 12px;
+    color: #666;
+    margin: 2px 0;
+  }
+  
+  .activity-status {
+    font-size: 12px;
+    font-weight: 500;
+  }
+  
+  .activity-status.approved {
+    color: #28a745;
+  }
+  
+  .activity-status.rejected {
+    color: #dc3545;
+  }
+  
+  /* Mobile-specific tweaks */
+  @media (max-width: 480px) {
+    .dashboard-container {
+      padding: 10px;
+    }
+  
+    .dashboard-title {
+      font-size: 20px;
+    }
+  
+    .card {
+      padding: 12px;
+    }
+  
+    .card-value {
+      font-size: 24px;
+    }
+  
+    .status-label, .geo-label, .model-label {
+      width: 80px;
+    }
+  
+    .status-bar-container, .geo-bar-container, .model-bar-container {
+      height: 12px;
+    }
+  }

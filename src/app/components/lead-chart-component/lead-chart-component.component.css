@@ -57,7 +57,7 @@
 /* Line chart in bottom row can be wider */
 .line-chart {
   width: 85%; /* Increased from 70% */
-  max-width: 1000px; /* Increased from 800px */
+  max-width: 800px; /* Increased from 800px */
   height: 500px; /* Explicit height setting */
 }
 

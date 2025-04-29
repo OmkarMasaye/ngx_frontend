@@ -1,0 +1,136 @@
+/* Ensure the HTML and body elements allow the container to take full screen */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 80%;
+    overflow: hidden; /* Prevent scrolling if content overflows */
+}
+
+/* Users container styles */
+.users-container {
+    background-color: #fff;
+    color: #000;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Use viewport height to cover the full screen */
+    width: 85vw; /* Use viewport width to cover the full screen */
+    margin: 0; /* Remove any margin */
+    box-sizing: border-box;
+    padding: 40px;
+    overflow-y: auto; /* Allow scrolling within the container if content overflows */
+}
+
+/* Rest of your existing styles remain unchanged */
+h2 {
+    color: black;
+    margin-bottom: 10px;
+    font-size: 40px;
+    margin-bottom:30px;
+}
+
+p {
+    margin-bottom: 30px;
+    font-size: 20px;
+}
+
+.search-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    height: 60px; 
+    margin-bottom:40px;
+}
+
+.search-bar input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 20px;
+    flex-grow: 1;
+    min-width: 200px;
+}
+
+.search-bar button {
+    padding: 5px 10px;
+    background-color: #1da1f2;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 20px;
+    min-width: 80px;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    margin-bottom: 20px;
+    -webkit-overflow-scrolling: touch;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+    font-size: 16px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #333;
+    white-space: nowrap;
+}
+
+th {
+    background-color: #333;
+    color: #fff;
+    font-weight: 600;
+}
+
+td span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+select {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+    padding: 5px;
+    border-radius: 12px;
+    font-size: 16px;
+    width: 100px;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 16 16"><path d="M8 12l-4-4h8l-4 4z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 5px center;
+}
+
+span {
+    cursor: default;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    .users-container {
+        padding: 10px;
+    }
+
+    .search-bar {
+        flex-direction: column;
+    }
+
+    .search-bar input,
+    .search-bar button {
+        width: 100%;
+        min-width: unset;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+}

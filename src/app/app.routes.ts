@@ -14,6 +14,14 @@ export const routes: Routes = [
     canActivate: [authGuard],
     children:[
       {
+        path: 'dashboard/loan',
+        loadComponent: () => import('./components/loandashboard/loandashboard.component').then(m => m.LoandashboardComponent)
+      },
+      {
+        path: 'dashboard/skoda',
+        loadComponent: () => import('./components/skodadashboard/skodadashboard.component').then(m => m.SkodadashboardComponent)
+      },
+      {
         path: 'viewdata/:dataName',
         loadComponent: () => import('./components/viewdata/viewdata.component').then(m => m.ViewdataComponent)
       },{
@@ -24,6 +32,10 @@ export const routes: Routes = [
         path: 'visualizedata/loan',
         loadComponent: () => import('./components/bar/bar.component').then(m => m.BarComponent)
       },
+      {
+        path:'users',
+        loadComponent: () => import('./components/users/users.component').then(m => m.UsersComponent)
+      },{ path: '', redirectTo: 'dashboard/skoda', pathMatch: 'full' } 
 
       
     ]

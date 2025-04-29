@@ -1,0 +1,82 @@
+<div class="dashboard-container">
+    <!-- Header -->
+    <h1 class="dashboard-title">Skoda  Dashboard</h1>
+    <p class="dashboard-subtitle">Manage and analyze Skoda lead inquiries</p>
+  
+    <!-- Summary Cards -->
+    <div class="summary-cards">
+      <!-- Total Leads -->
+      <div class="card">
+        <h2 class="card-title">Total Leads</h2>
+        <p class="card-value">{{ dashboardData.totalLeads | number }}</p>
+        
+      </div>
+  
+      <!-- Model Distribution -->
+      <div class="card">
+        <h2 class="card-title">Model Distribution</h2>
+        <div class="model-item" *ngFor="let model of dashboardData.modelDistribution | keyvalue">
+          <div class="model-label">{{ model.key }}</div>
+          <div class="model-bar-container">
+            <div class="model-bar" [style.width]="(model.value / dashboardData.totalLeads * 100 || 0) + '%'"></div>
+          </div>
+          <span class="model-value">{{ model.value }} ({{ (model.value / dashboardData.totalLeads * 100 || 0) | number:'1.0-1' }}%)</span>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Lead Status and Geographic Distribution -->
+    <div class="status-geo-container">
+      <!-- Lead Status -->
+      <div class="card">
+        <h2 class="card-title">Lead Status</h2>
+        <div class="status-item">
+          <div class="status-label">Accepted</div>
+          <div class="status-bar-container">
+            <div class="status-bar approved" [style.width]="(dashboardData.status.Approved / dashboardData.totalLeads * 100 || 0) + '%'"></div>
+          </div>
+          <span class="status-value">{{ dashboardData.status.Approved }} ({{ (dashboardData.status.Approved / dashboardData.totalLeads * 100 || 0) | number:'1.0-1' }}%)</span>
+        </div>
+        <div class="status-item">
+          <div class="status-label">Pending</div>
+          <div class="status-bar-container">
+            <div class="status-bar pending" [style.width]="(dashboardData.status.Pending / dashboardData.totalLeads * 100 || 0) + '%'"></div>
+          </div>
+          <span class="status-value">{{ dashboardData.status.Pending }} ({{ (dashboardData.status.Pending / dashboardData.totalLeads * 100 || 0) | number:'1.0-1' }}%)</span>
+        </div>
+        <div class="status-item">
+          <div class="status-label">Rejected</div>
+          <div class="status-bar-container">
+            <div class="status-bar rejected" [style.width]="(dashboardData.status.Rejected / dashboardData.totalLeads * 100 || 0) + '%'"></div>
+          </div>
+          <span class="status-value">{{ dashboardData.status.Rejected }} ({{ (dashboardData.status.Rejected / dashboardData.totalLeads * 100 || 0) | number:'1.0-1' }}%)</span>
+        </div>
+      </div>
+  
+      <!-- Geographic Distribution -->
+      <div class="card">
+        <h2 class="card-title">Geographic Distribution</h2>
+        <div class="geo-item" *ngFor="let state of dashboardData.geographicDistribution | keyvalue">
+          <div class="geo-label">{{ state.key }}</div>
+          <div class="geo-bar-container">
+            <div class="geo-bar" [style.width]="(state.value / (dashboardData.totalLeads || 1) * 100 || 0) + '%'"></div>
+          </div>
+          <span class="geo-value">{{ state.value }}</span>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Recent Activity -->
+    <div class="card">
+      <h2 class="card-title">Recent Activity</h2>
+      <div class="activity-item" *ngFor="let activity of dashboardData.recentActivity">
+        <div class="activity-icon">{{ activity.name.charAt(0) }}</div>
+        <div class="activity-details">
+          <p class="activity-name">{{ activity.name }} <span class="activity-time">{{ activity.time }}</span></p>
+          <p class="activity-action">Model: {{ activity.model }} | City: {{ activity.city }}, {{ activity.state }}</p>
+          <p class="activity-action">{{ activity.dealer_details }}</p>
+          <p class="activity-status" [ngClass]="activity.status === 'Approved' ? 'approved' : 'rejected'">{{ activity.reason }}</p>
+        </div>
+      </div>
+    </div>
+  </div>

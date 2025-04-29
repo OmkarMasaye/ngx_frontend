@@ -4,7 +4,7 @@ import { NbCardModule, NbLayoutModule } from '@nebular/theme';
 import { NgChartsModule, BaseChartDirective } from 'ng2-charts';
 import { CommonModule } from '@angular/common'; // For *ngIf
 import { FormsModule } from '@angular/forms'; // For ngModel
-import { ChartConfiguration } from 'chart.js'; // For chartOptions typing
+import { ChartConfiguration, ChartOptions } from 'chart.js'; // For chartOptions typing
 import { HttpClient } from '@angular/common/http';
 
 import { Color, NgxChartsModule, ScaleType ,LegendPosition} from '@swimlane/ngx-charts';
@@ -64,7 +64,7 @@ export class LeadChartComponent implements OnInit {
 
   ngOnInit() {
     this.loadChartData();
-    this.fetchModelPopularity();
+    this.fetchModelUserCounts();
     this.loadchartData();
     
   }
@@ -138,46 +138,117 @@ export class LeadChartComponent implements OnInit {
   }
   
   
-  charrtData: any[] = [];
-  view: [number, number] = [400, 400]; // [width, height]
-
-  // ngx-charts options for pie chart
-  labels = true;          // Show labels on the pie slices (corrected from showLabels)
-  explodeSlices = false;  // Whether to explode the slices
-  doughnut = false;       // Set to true if you want a doughnut chart
-  gradient = false;       // Apply gradient to the chart
-  legend = true;          // Show the legend (corrected from showLegend)
-  legendTitle = 'Models'; // Title for the legend
   
-  colorScheme: Color = {
-    name: 'custom',
-    selectable: true,
-    group: ScaleType.Ordinal,
-    domain: ['#5AA454', '#A10A28', '#C7B42C'] // Colors for each slice
-  };
 
 
-
-  fetchModelPopularity(): void {
-    this.http.get<any[]>('http://localhost:5000/model-popularity') // Replace with your API URL
-      .subscribe(
-        (data) => {
-          console.log(data);
-          this.charrtData = this.transformToPercentage(data);
-        },
-        (error) => {
-          console.error('Error fetching model popularity:', error);
-        }
-      );
+  formatISTDate(date: Date | null): string | null {
+    if (!date) return null;
+    const istOffset = 5.5 * 60; // IST offset in minutes
+    const localDate = new Date(date.getTime() + istOffset * 60 * 1000);
+    localDate.setUTCHours(0, 0, 0, 0); // Set to midnight IST
+    const year = localDate.getUTCFullYear();
+    const month = String(localDate.getUTCMonth() + 1).padStart(2, '0');
+    const day = String(localDate.getUTCDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
   }
 
-  // Transform raw data into percentage format
-  transformToPercentage(data: any[]): any[] {
-    const total = data.reduce((sum, item) => sum + item.value, 0); // Calculate total value
-    return data.map(item => ({
-      name: item.name,
-      value: total > 0 ? Math.round((item.value / total) * 100) : 0 // Convert to percentage
-    }));
+  modelSelectedDateRange: string = 'today';
+  modelCustomStartDate: string | null = null;
+  modelCustomEndDate: string | null = null;
+  modelChartData: any = {
+    labels: ['Kushaq', 'Slavia', 'Kodiaq'],
+    datasets: []
+  };
+  modelChartOptions: ChartConfiguration['options'] = {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      y: {
+        beginAtZero: true,
+        title: {
+          display: true,
+          text: 'Number of Users'
+        }
+      },
+      x: {
+        title: {
+          display: true,
+          text: 'Model'
+        }
+      }
+    },
+    plugins: {
+      legend: {
+        display: false
+      },
+      tooltip: {
+        callbacks: {
+          label: (context: any) => {
+            const value = context.raw;
+            return `Users: ${value}`;
+          }
+        }
+      }
+    }
+  };
+
+  private dataName = 'skoda';
+  onModelDateRangeChange(): void {
+    if (this.modelSelectedDateRange !== 'custom') {
+      this.modelCustomStartDate = null;
+      this.modelCustomEndDate = null;
+      this.fetchModelUserCounts();
+    }
+  }
+
+  fetchModelUserCounts(): void {
+    if (this.modelSelectedDateRange === 'custom' && (!this.modelCustomStartDate || !this.modelCustomEndDate)) {
+      console.log('Waiting for both custom dates to be set');
+      return;
+    }
+  
+    // Validate custom dates for 'custom' range
+    let formattedStartDate: string | null = null;
+    let formattedEndDate: string | null = null;
+  
+    if (this.modelSelectedDateRange === 'custom') {
+      if (!this.modelCustomStartDate || !this.modelCustomEndDate) {
+        console.error('Invalid custom dates');
+        return;
+      }
+      const startDate = new Date(this.modelCustomStartDate);
+      const endDate = new Date(this.modelCustomEndDate);
+      if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
+        console.error('Invalid date format for custom dates');
+        return;
+      }
+      formattedStartDate = this.leadDataService.formatISTDate(startDate);
+      formattedEndDate = this.leadDataService.formatISTDate(endDate);
+    }
+  
+    this.leadDataService
+      .getModelUserCounts(this.dataName, this.modelSelectedDateRange, formattedStartDate, formattedEndDate)
+      .subscribe({
+        next: (response: any) => {
+          if (response.status === 'success') {
+            this.modelChartData = {
+              labels: response.data.labels, // ['Kushaq', 'Slavia', 'Kodiaq']
+              datasets: [
+                {
+                  label: 'Model User Counts',
+                  data: response.data.counts,
+                  backgroundColor: ['#5AA454', '#A10A28', '#C7B42C'],
+                  borderColor: ['#4A8A44', '#910A18', '#B7A41C'],
+                  borderWidth: 1,
+                },
+              ],
+            };
+          }
+        },
+        error: (error) => {
+          console.error('Error fetching model user counts:', error);
+        },
+      });
   }
   
   selecteddateRange: string = 'thisWeek';

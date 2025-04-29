@@ -9,9 +9,31 @@
           </button>
           <div class="logo">My App</div>
         </div>
-        <div class="user-profile">
-          <nb-icon icon="person-outline"></nb-icon>
-          <span>User</span>
+        <div class="user-menu">
+          <button class="user-menu-btn">
+            <i class="fas fa-user"></i>{{ displayText }}
+          </button>
+          <div class="dropdown-menu">
+            <h5 class="sidebar-header">My Account</h5>
+            <hr class="sidebar-divider" />
+            <ul class="sidebar-menu">
+              <!-- <li>
+                <a routerLink="edit-profile" routerLinkActive="active">
+                  <i class="fa-solid fa-user"></i> Edit Profile
+                </a>
+              </li>
+              <li>
+                <a routerLink="change-password" routerLinkActive="active">
+                  <i class="fa-solid fa-lock"></i> Change Password
+                </a>
+              </li> -->
+              <li>
+                <a href="#" class="logout">
+                  <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </nb-layout-header>

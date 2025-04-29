@@ -1,23 +1,20 @@
-/* Ensure the host element fills the layout column */
 :host {
   display: flex;
   flex-direction: column;
-  height: 100%; /* Fill the available height of the layout column */
-  width: 100%; /* Fill the available width */
+  height: 100%;
+  width: 100%;
 }
 
-/* Ensure the fullcontainer takes the full space and adjusts for sidebar */
 .fullcontainer {
   display: flex;
   flex-direction: column;
-  height: 100%; /* Fill the layout column height */
-  width: 100%; /* Fill the available width */
-  margin-left: 0; /* Reset margin, handled by layout-column */
+  height: 100%;
+  width: 100%;
+  margin-left: 0;
   box-sizing: border-box;
-  padding: 0; /* Remove any internal padding */
+  padding: 0;
 }
 
-/* Style the container to fit the content area */
 .container {
   flex: 1;
   padding: 20px;
@@ -26,58 +23,51 @@
   background-color: #fff;
   border-radius: 1px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  height: calc(100% - 40px); /* Subtract padding */
-  overflow: hidden; /* Prevent container from scrolling */
+  height: calc(100% - 40px);
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-/* Style the search container to fit within the layout */
-/* Ensure search fields and buttons align in the same line */
 .search-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-items: center; /* This ensures vertical alignment */
-  gap: 10px;
+  align-items: center;
   margin-bottom: 20px;
   width: 100%;
   margin-top: 25px;
 }
 
-/* Make sure search fields have consistent height */
 .search-field {
-  width: 350px;
+  width: 300px;
   min-width: 200px;
   margin-bottom: 0;
-  margin-top:20px; /* Remove any bottom margin */
-}
-/* Add gap between search and reset buttons */
-.search-buttons {
-  display: flex;
-  flex-direction: row; /* For desktop, keep buttons in a row */
-  gap: 15px; /* Adds space between buttons */
-  
+  margin-top: 20px;
 }
 
-/* Update the mobile version to maintain the gap in column layout */
+.search-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
 @media (max-width: 768px) {
   .search-buttons {
     flex-direction: column;
     width: 100%;
-    gap: 15px; /* Maintain consistent gap in mobile view */
+    gap: 15px;
   }
 }
-.search-button, 
+
+.search-button,
 .show-all-button {
-  height: 56px; /* Match the height of mat-form-field */
-  margin-top: 0; /* Remove any top margin */
-  align-self: center; 
-  /* Center vertically in flex container */
+  height: 56px;
+  margin-top: 0;
+  align-self: center;
 }
 
-/* Fix mat-form-field internal styling to ensure consistent height */
 .mat-form-field-wrapper {
   padding-bottom: 0;
 }
@@ -85,13 +75,13 @@
 .mat-form-field-flex {
   align-items: center;
 }
+
 .table-wrapper {
-  overflow-x: auto; /* Enable horizontal scrolling */
-  flex: 1; /* Take remaining space */
-  min-height: 0; /* Ensure it doesn't overflow parent */
+  overflow-x: auto;
+  flex: 1;
+  min-height: 0;
 }
 
-/* Style the datedown section */
 .datedown {
   display: flex;
   justify-content: space-between;
@@ -101,20 +91,17 @@
   margin-bottom: 20px;
 }
 
-/* Style the date container */
 .date-container {
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
-/* Style the custom date range */
 .custom-date-range {
   display: flex;
   gap: 20px;
 }
 
-/* Ensure date fields and buttons have consistent height */
 .date-field,
 .downloadbutton {
   height: 56px;
@@ -122,19 +109,17 @@
   align-items: center;
 }
 
-/* Ensure table and paginator fit and fill the remaining space */
 table {
-  width: 100%; /* Full width within the container */
-  flex: 1; /* Grow to fill available space */
-  overflow: auto; /* Handle horizontal overflow if needed */
+  width: 100%;
+  flex: 1;
+  overflow: auto;
 }
 
 mat-paginator {
-  width: 100%; /* Full width within the container */
-  margin-top: 20px; /* Space above paginator */
+  width: 100%;
+  margin-top: 20px;
 }
 
-/* Style the overlay for loading */
 .overlay {
   position: fixed;
   top: 0;
@@ -148,78 +133,199 @@ mat-paginator {
   z-index: 1000;
 }
 
-/* Responsive adjustments */
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .fullcontainer {
     margin-left: 0;
     width: 100%;
     padding: 0;
   }
-  
   .container {
     padding: 10px;
     height: calc(100% - 20px);
   }
-  
-  /* Fix search container in mobile */
   .search-container {
     flex-direction: column;
     align-items: stretch;
     width: 100%;
     gap: 15px;
   }
-  
-  /* Make search fields full width and consistent in mobile */
   .search-field {
     width: 100% !important;
     min-width: 100% !important;
     margin: 0 !important;
   }
-  
-  /* Make buttons full width and consistent in mobile */
-  .search-button, 
+  .search-button,
   .show-all-button {
     width: 100%;
     margin: 5px 0;
-    height: 48px; /* Slightly smaller height for mobile */
+    height: 48px;
   }
-  
-  /* Button container for mobile */
   .search-buttons {
     display: flex;
     flex-direction: column;
     width: 100%;
     gap: 10px;
   }
-  
   .datedown {
     flex-direction: column;
     align-items: stretch;
     gap: 15px;
   }
-  
   .date-container {
     flex-direction: column;
     align-items: stretch;
     width: 100%;
     gap: 15px;
   }
-  
   .date-field {
     width: 100%;
     margin: 0;
   }
-  
   .custom-date-range {
     flex-direction: column;
     width: 100%;
     gap: 15px;
   }
-  
-  /* Make download button full width in mobile */
   .downloadbutton {
     width: 100%;
     margin: 5px 0;
   }
+}
+
+.dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.dropdown-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  padding: 0 16px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 56px;
+  border-radius: 4px;
+  background-color: #3f51b5;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dropdown-button:hover {
+  background-color: #5c6bc0;
+}
+
+.dropdown-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(63, 81, 181, 0.3);
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  min-width: 180px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  overflow: hidden;
+  transform: translateY(4px);
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.dropdown-menu.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #f5f5f5;
+}
+
+.dropdown-item:focus {
+  outline: none;
+  background-color: #e8eaf6;
+}
+
+.dropdown-button mat-icon {
+  margin-right: 8px;
+  font-size: 20px;
+  height: 20px;
+  width: 20px;
+  line-height: 20px;
+}
+
+.button-group {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.columns-dropdown .dropdown-menu {
+  min-width: 200px;
+  padding: 8px 0;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+}
+
+.checkbox-item mat-checkbox {
+  width: 100%;
+}
+
+.dropdown-menu .checkbox-item:hover {
+  background-color: #f5f5f5;
+}
+
+@media (max-width: 768px) {
+  .button-group {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+  .columns-dropdown,
+  .dropdown {
+    width: 100%;
+  }
+  .columns-dropdown .dropdown-button,
+  .dropdown-button {
+    width: 100%;
+    justify-content: center;
+    height: 48px;
+  }
+  .columns-dropdown .dropdown-menu,
+  .dropdown-menu {
+    width: 100%;
+    min-width: 100%;
+  }
+}
+
+.dropdown-button[aria-expanded="true"] {
+  background-color: #5c6bc0;
+}
+
+.dropdown-item:active {
+  background-color: #e0e0e0;
 }

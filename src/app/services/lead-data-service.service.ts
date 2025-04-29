@@ -21,7 +21,8 @@ export class LeadDataService {
       url += `&customStartDate=${customStartDate}&customEndDate=${customEndDate}`;
     }
     return this.http.get<any>(url);
-  }gettLeadData(
+  }
+  gettLeadData(
     dataName: string,
     dateRange: string = 'thisWeek',
     customStartDate?: string | null,
@@ -89,6 +90,20 @@ export class LeadDataService {
     }
     return this.http.get<any>(url);
   }
+
+  getModelUserCounts(
+    dataName: string,
+    dateRange: string = 'today',
+    startDate?: string | null,
+    endDate?: string | null
+  ): Observable<any> {
+    let url = `http://localhost:5000/api/model-user-counts/${dataName}?dateRange=${dateRange}`;
+    if (dateRange === 'custom' && startDate && endDate) {
+      url += `&customStartDate=${startDate}&customEndDate=${endDate}`;
+    }
+    return this.http.get<any>(url);
+  }
+
   formattISTDate(date: Date | string | null): string | null {
     if (!date) return null;
   

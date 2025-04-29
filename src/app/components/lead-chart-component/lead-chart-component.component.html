@@ -26,21 +26,27 @@
       </nb-card-body>
     </nb-card>
   
-    <div class="chart-card pie-chart-container">
-      <div class="pie-chart-title"> Model Distribution</div>
-      <ngx-charts-pie-chart
-        [view]="view"
-        [results]="charrtData"
-        [scheme]="colorScheme"
-        [labels]="labels"
-        [explodeSlices]="explodeSlices"
-        [doughnut]="doughnut"
-        [gradient]="gradient"
-       
-        [legendTitle]="legendTitle"
-      >
-      </ngx-charts-pie-chart>
-    </div>
+    <nb-card class="chart-card">
+      <nb-card-header>Model User Counts</nb-card-header>
+      <nb-card-body>
+        <div class="controls">
+          <label for="modelDateRange">Date Range: </label>
+          <select id="modelDateRange" [(ngModel)]="modelSelectedDateRange" (change)="onModelDateRangeChange()">
+            <option value="today">Today</option>
+            <option value="thisWeek">This Week</option>
+            <option value="thisMonth">This Month</option>
+            <option value="custom">Custom</option>
+          </select>
+          <div *ngIf="modelSelectedDateRange === 'custom'" class="custom-dates">
+            <label>Start: </label>
+            <input type="date" [(ngModel)]="modelCustomStartDate" (ngModelChange)="fetchModelUserCounts()" />
+            <label>End: </label>
+            <input type="date" [(ngModel)]="modelCustomEndDate" (ngModelChange)="fetchModelUserCounts()" />
+          </div>
+        </div>
+        <canvas baseChart [data]="modelChartData" [options]="modelChartOptions" [type]="'bar'"></canvas>
+      </nb-card-body>
+    </nb-card>
   </div>
   
   <!-- Bottom row with centered chart -->

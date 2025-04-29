@@ -74,16 +74,18 @@ export class LoginnComponent {
     this.loading = true;
   
     this.authService.loginUser(email, password).subscribe({
-      next: (response: { token: string }) => {
+      next: (response: { token: string ,role:string,name:string}) => {
         this.loading = false;
   
         if (response?.token) {
           localStorage.setItem('token', response.token);
+          localStorage.setItem("role",response.role);
+          localStorage.setItem('name',response.name);
           this.authService.setToken(response.token);
           this.router.navigate(['/lay']);
         } else {
           console.error('No token received');
-          alert('Unexpected error occurred. Please try again.');
+          alert('Invalid username or password or not authorized');
         }
       },
       error: (error) => {
@@ -93,36 +95,40 @@ export class LoginnComponent {
       }
     });
   }
-  
 
   onSignup(form: any): void {
     if (!form.valid) {
       alert('Please fill in all required fields correctly.');
       return;
     }
-  
+
     const { username, email, mobile, password, confirmPassword } = form.value;
-  
+
     if (password !== confirmPassword) {
       alert('Passwords do not match.');
       return;
     }
-  
+
     this.loading = true;
-  
-    this.authService.signupUser(email, password,username,mobile).subscribe({
+
+    this.authService.signupUser(email, password, username, mobile).subscribe({
       next: (response: { message: string }) => {
         this.loading = false;
         this.successMessage = response?.message || 'Signup successful! Please login.';
         this.showSuccessModal = true;
-        this.router.navigate(['/login']);
+        // Delay navigation to allow user to see success message
+        setTimeout(() => {
+          this.successMessage = ''; // Clear success message
+          this.showSuccessModal = false;
+          this.router.navigate(['/login']);
+        }, 2000); // 2-second delay
       },
       error: (error) => {
         this.loading = false;
         const errorMsg = this.extractErrorMessage(error);
         console.error('Signup failed', error);
         alert(errorMsg);
-  
+
         if (errorMsg === 'User already exists') {
           this.router.navigate(['/login']);
         }
@@ -137,17 +143,14 @@ export class LoginnComponent {
       return 'Something went wrong';
     }
   }
-  
-  
+
+  onOkClicked() {
+    this.successMessage = ''; // Clear success message when OK is clicked
+    this.showSuccessModal = false; // Hide the message card
+    this.isLoginMode = true; // Switch to login form
+  }
   redirectToLogin() {
     this.showSuccessModal = false;
     this.router.navigate(['/login']);
-  }
-
-  
-
-  onOkClicked() {
-    this.showSuccessModal = false; // Hide the message card
-    this.isLoginMode = true; // Switch to login form
   }
 }
